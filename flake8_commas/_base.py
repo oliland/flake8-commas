@@ -248,7 +248,9 @@ class CommaChecker(object):
     def __init__(self, tree, filename='(none)', file_tokens=None):
         fn = 'stdin' if filename in ('stdin', '-', None) else filename
         self.filename = fn
-        self.tokens = file_tokens
+        self.tokens = None
+        if file_tokens:
+            self.tokens = [Token(t) for t in file_tokens]
 
     def run(self):
         tokens = self.tokens
